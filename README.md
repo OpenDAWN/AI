@@ -7,30 +7,43 @@ Readings :
 example building a library with requirejs
 https://github.com/requirejs/example-libglobal
 
-Structure : 
+Structure :
 ---------------------------------------------------
 
+Interface Chain (extend Node - Events)
+
+    - constructor(object {id: node})
+    - setAccess(accessId, AudioParam[, deepParam])
+    - set(accessId, value) /* value could also be a node or an automation ? */
+    - add a mute toggle
 
 
-AI : 
-	- oscillator
-	- gain
-	- filter
+
+-- straight to /projects/circles
+AI :
+	- oscillator (ok)
+	- gain (ok)
+	- filter (ok)
 	- paner
-
-	- source
+	- enveloppe adsr (ok)
+    - bufferLoader (ok)
+    - reverb (ok)
+	# source
 	- mute (method toggle) - extend gain
+	- tremolo
 
 
-higher level
 	- aux
 	- master
+    - limiter
 	- chain (very generic, connect expose a chain.input and a chain.connect just like any other node)
 		could be used to create any type of audio chain and in another audio chain
 
-composites
-	- effects
-		reverb, filter, compressor, ...
+# composites
+# 	- effects
+# 		reverb, filter, compressor, ...
+
+reverb needs a buffer loader
 
 
 AI // namespace
@@ -41,7 +54,7 @@ Class
 	Class.extend
 
 Node
-	Node.attributes 
+	Node.attributes
 
 	Node.set
 	Node.get
@@ -57,6 +70,31 @@ Events
 
 V2
 ---------------------------------------------
+
+remove Class
+	- use ObjectCreate ?
+
+source
+	- createSource
+
+needs :
+	core:
+
+	nodes:
+		source
+			oscillator
+			bufferSource
+		process
+		analyse
+
+
+
+
+	create sources
+
+	access AudioParams (linearRampToValue, etc...)
+
+	set(name, value, 'linear', duration)
 
 
 
