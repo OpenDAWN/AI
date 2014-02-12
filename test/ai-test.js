@@ -13,7 +13,7 @@ define(['ai'], function(AI) {
         'arena': './impulses/arena_20_000_seat_floor_1_2_rcard.wav',
     });
 
-    console.log(loader);
+    // console.log(loader);
 
     loader.on('error', function(type, id, path) {
         console(arguments);
@@ -35,7 +35,6 @@ define(['ai'], function(AI) {
     loader.load();
 
     function start() {
-        // console.log(AI);
         // modulator at 2000 - 2200 hertz is nice
         var modulator = new AI.Chain({
             mod: new AI.Oscillator('sine', 2, true),
@@ -47,15 +46,13 @@ define(['ai'], function(AI) {
             osc: new AI.Oscillator('sine', 440, true),
             gain: new AI.Gain(0),
             filter: new AI.Filter('lowpass', 500),
-            reverb: new AI.Convolver(loader.get('arena'))
+            // reverb: new AI.Convolver(loader.get('arena'))
         });
 
-        modulator.connect(myChain.access('osc'), 'frequency');
+        // modulator.connect(myChain.access('osc'), 'frequency');
         myChain.connect(AI.out);
 
-
         var now = AI.ctx.currentTime;
-
 
         // create enveloppe
         var env = new AI.ADSR({
@@ -71,7 +68,7 @@ define(['ai'], function(AI) {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
 
-            env.apply(myChain.access('gain'));
+            env.applyTo(myChain.access('gain'));
         }, false);
     }
 
