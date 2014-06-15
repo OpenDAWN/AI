@@ -2,8 +2,8 @@ define(function(require) {
 
     var ctx = require('core/ctx');
 
-        // Expose
-        return {
+    // Expose
+    return {
         ctx: ctx,
         out: ctx.destination,
 
@@ -21,6 +21,6 @@ define(function(require) {
 
         // effects
         ADSR: require('components/adsr')
-
     };
+    
 });
